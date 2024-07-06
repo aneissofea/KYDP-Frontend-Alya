@@ -32,9 +32,9 @@ const Login = () => {
         console.log(values.username, values.password)
         
         if (values.username === 'alyam' && values.password === 'password123') {
-            
-            setValues({...values, isLoggedIn: "true"})
+        
             console.log("success!")
+            setValues({...values, isLoggedIn: !values.isLoggedIn})
             console.log(values.isLoggedIn)
             //TODO enter Navigate to home*/
         }

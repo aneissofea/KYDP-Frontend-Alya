@@ -1,6 +1,7 @@
+//import { Home } from '@mui/icons-material';
 import './App.css';
 import Login from './components/Login';
-//import Home from './components/Home';
+import Home from './components/Home';
 
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
     </div> */
 
     <>
-      <Login />
+      <Home />
     </>
   );
 }
