@@ -18,9 +18,7 @@ function Header() {
     };
 
     return(
-        <Grid container direction='row' style={{display: "flex",
-            backgroundColor: "#FFD3B6" }}
-             >
+        <Grid container direction='row' style={{display: "flex", backgroundColor: "#FFD3B6" }}>
             <Grid item xs={2.5} >
                 <h3>Find my news!</h3>    
             </Grid>
@@ -32,7 +30,7 @@ function Header() {
                     Search
                 </Button>
             </Grid>
-            <Grid item xs={3} style={{display: 'flex', justifyContent: 'flex-end', alignItems: 'right'}}>
+            <Grid item xs={3} style={{display: 'flex', justifyContent: 'flex-end', alignItems: 'center'}}>
                 <Chip label="username" />
             </Grid>
             <Grid item xs={1} style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>

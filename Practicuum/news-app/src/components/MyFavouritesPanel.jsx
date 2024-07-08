@@ -5,8 +5,11 @@ function MyFavouritesPanel() {
 
     const [myFavourites, setFavourites] = useState({});
 
+    //set localStorage myfavourites
+
+
     const handleClear = () => {
-      setFavourites({""})  
+      //setFavourites({""})  
     };
 
     return(

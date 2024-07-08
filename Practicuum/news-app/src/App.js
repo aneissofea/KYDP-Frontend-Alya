@@ -5,6 +5,10 @@ import Home from './components/Home';
 
 
 function App() {
+
+  //state isLoggedIn should be here so can be passed to Home and Login 
+  //function state
+
   return (
     /**<div>
       <Router>
@@ -15,8 +19,11 @@ function App() {
       </Router> 
     </div> */
 
+    // check if isLoggedIn is true -> Home
+    // check if isLoggedIn is false -> Login
+
     <>
-      <Home />
+      <Login />
     </>
   );
 }

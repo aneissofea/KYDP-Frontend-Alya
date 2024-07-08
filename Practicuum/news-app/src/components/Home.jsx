@@ -6,6 +6,7 @@ import Header from './Header';
 //import { useState } from 'react';
 
 function Home() {
+    
     /**
     const [keyword, setKeyword] = useState({
         keyword: ""
@@ -14,6 +15,12 @@ function Home() {
     const keyWord = () => {
         setKeyword()
     };
+
+    const myFavorites = () => {
+    };
+
+    const clearmyFavourties = () =>
+
     */
     return (
         //<div className='input' style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '10vh'}}>

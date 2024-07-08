@@ -24,30 +24,31 @@ const Login = () => {
 
     //TODO understand this 
     const inputChangeHandler = (prop) => (event) => {
-        setValues({...values, [prop]: event.target.value
-        });
+        setValues({...values, [prop]: event.target.value});
     };
 
     const validatePassword = () => {
-        console.log(values.username, values.password)
+        console.log(values.username, values.password);
         
         if (values.username === 'alyam' && values.password === 'password123') {
         
-            console.log("success!")
-            setValues({...values, isLoggedIn: !values.isLoggedIn})
-            console.log(values.isLoggedIn)
+            console.log("success!");
+            setValues((prevValues) => ({...prevValues, isLoggedIn: true }));
+            //update isLoggedIn to localStorage
+            
+
             //TODO enter Navigate to home*/
+        
         }
         else {
             <Alert severity="warning">Wrong username and password</Alert>
         }
     };
 
-
-
+    console.log(values)
     return(
         <div className='container'>
-            <Grid container spacing={2}>
+            <Grid container spacing={2} style={{display: "flex", backgroundColor: "#F7E7DC"}}>
                 <Grid item xs={4}>
                 </Grid>
                 <Grid item xs={4}>
@@ -71,7 +72,6 @@ const Login = () => {
                                 <Input
                                     type={values.showPassword ? "text" : "password"} 
                                     placeholder='Password'
-                                    size='lg'
                                     onChange={inputChangeHandler("password")}
                                     value={values.password}
                                     endAdornment={
