@@ -2,12 +2,23 @@
 import './App.css';
 import Login from './components/Login';
 import Home from './components/Home';
+import { useState } from 'react';
 
 
 function App() {
 
   //state isLoggedIn should be here so can be passed to Home and Login 
+  const [values, setValues] = useState({
+    //username: "",
+    isLoggedIn: false
+  });
+
   //function state
+  const setisLoggedIn = () => {
+    setValues.isLoggedIn = !values.isLoggedIn
+  };
+
+
 
   return (
     /**<div>
@@ -23,7 +34,7 @@ function App() {
     // check if isLoggedIn is false -> Login
 
     <>
-      <Login />
+      <Login setLogIn={setisLoggedIn}/>
     </>
   );
 }

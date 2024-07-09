@@ -11,7 +11,6 @@ const Login = () => {
         username: "",
         password: "",
         showPassword: false,
-        isLoggedIn: false
     });
 
     const showPasswordHandler = () => {
