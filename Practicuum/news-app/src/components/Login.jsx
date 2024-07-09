@@ -3,48 +3,52 @@ import { Button, IconButton, Input, InputAdornment, TextField, Alert } from '@mu
 import Grid from '@mui/material/Grid';
 import { useState } from 'react';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
 
 
-const Login = () => {
+const Login = ({setIsLoggedIn, setUsername}) => {
 
-    const [values, setValues] = useState({
+    /**const [values, setValues] = useState({
         username: "",
         password: "",
         showPassword: false,
-    });
+    });*/
 
+    const [localusername, setLocalUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate();
+;
     const showPasswordHandler = () => {
-        setValues({...values, showPassword: !values.showPassword});
+        //setValues({...values, showPassword: !values.showPassword});
+        setShowPassword(!showPassword);
     };
 
     const mouseDownPasswordHandler = (event) => {
         event.preventDefault();
     };
 
-    //TODO understand this 
-    const inputChangeHandler = (prop) => (event) => {
+    /**const inputChangeHandler = (prop) => (event) => {
         setValues({...values, [prop]: event.target.value});
-    };
+    };*/
 
-    const validatePassword = () => {
-        console.log(values.username, values.password);
+    const handleLogin = () => {
+        console.log(localusername, password);
         
-        if (values.username === 'alyam' && values.password === 'password123') {
+        if (localusername === 'alyam' && password === 'password123') {
         
             console.log("success!");
-            setValues((prevValues) => ({...prevValues, isLoggedIn: true }));
-            //update isLoggedIn to localStorage
-            
-
-            //TODO enter Navigate to home*/
-        
+            localStorage.setItem('isLoggedIn', true);
+            localStorage.setItem('localusername', localusername);
+            setIsLoggedIn(true);
+            setLocalUsername(localusername);
+            navigate('/home');
         }
         else {
             <Alert severity="warning">Wrong username and password</Alert>
         }
     };
 
-    console.log(values)
     return(
         <div className='container'>
             <Grid container spacing={2} style={{display: "flex", backgroundColor: "#F7E7DC"}}>
@@ -65,20 +69,20 @@ const Login = () => {
 
                         <div className='inputs'>
                             <div className='input' style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '10vh'}}>
-                                <TextField id="outlined-basic" label="Username" variant="standard" onChange={inputChangeHandler("username")}/>
+                                <TextField id="outlined-basic" label="Username" variant="standard" onChange={(e) => setLocalUsername(e.target.value)}/>
                             </div>
                             <div className='input' style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '10vh'}}>
                                 <Input
-                                    type={values.showPassword ? "text" : "password"} 
+                                    type={showPassword ? "text" : "password"} 
                                     placeholder='Password'
-                                    onChange={inputChangeHandler("password")}
-                                    value={values.password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    value={password}
                                     endAdornment={
                                         <InputAdornment position="end">
                                             <IconButton
                                                 onClick={showPasswordHandler}
                                                 onMouseDown={mouseDownPasswordHandler} >
-                                                {values.showPassword ? (<Visibility />) : (<VisibilityOff />)}
+                                                {showPassword ? (<Visibility />) : (<VisibilityOff />)}
                                             </IconButton>
                                         </InputAdornment>
                                     }
@@ -88,7 +92,7 @@ const Login = () => {
                         </div>
 
                         <div className='login-container' style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                            <Button variant="contained" onClick={validatePassword}>
+                            <Button variant="contained" onClick={handleLogin}>
                                 Log in
                             </Button>
                         </div>

@@ -2,21 +2,25 @@
 import './App.css';
 import Login from './components/Login';
 import Home from './components/Home';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Navigate, Route } from 'react-router-dom';
 
 
 function App() {
 
   //state isLoggedIn should be here so can be passed to Home and Login 
-  const [values, setValues] = useState({
-    //username: "",
-    isLoggedIn: false
-  });
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState('');
 
-  //function state
-  const setisLoggedIn = () => {
-    setValues.isLoggedIn = !values.isLoggedIn
-  };
+  useEffect(() => {
+    const loggedInStatus = localStorage.getItem('isLoggedIn');
+    const storedUsername = localStorage.getItem('username');  
+    
+    if (loggedInStatus && storedUsername) {
+      setIsLoggedIn(true);
+      setUsername(storedUsername);
+    }
+  }, []);
 
 
 
@@ -30,12 +34,21 @@ function App() {
       </Router> 
     </div> */
 
-    // check if isLoggedIn is true -> Home
-    // check if isLoggedIn is false -> Login
+    <Router>
+      <Routes>
+        <Route 
+          path="/login"
+          element= { isLoggedIn ? <Navigate to="/home" /> : <Login setIsLoggedIn={setIsLoggedIn} setUsername={setUsername} />}
+        />
+        
+        <Route 
+          path="/home"
+          element = { isLoggedIn ? <Home username={username} /> : <Navigate to="/login" />} 
+        />
 
-    <>
-      <Login setLogIn={setisLoggedIn}/>
-    </>
+        <Route path="*" element={<Navigate to="/login" />} />
+      </Routes>
+    </Router>
   );
 }
 
