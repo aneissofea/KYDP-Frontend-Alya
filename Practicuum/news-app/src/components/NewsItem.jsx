@@ -11,8 +11,21 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 
 const NewsItem = ({ news }) => {
+  const handleBookmark = () => {
+    const savedFavourites = JSON.parse(localStorage.getItem('favourites')) || [];
+    
+    // Avoid duplicates by checking if the article is already saved
+    const isAlreadyFavourite = savedFavourites.some(fav => fav.url === news.url);
+    if (!isAlreadyFavourite) {
+      savedFavourites.push(news);
+      localStorage.setItem('favourites', JSON.stringify(savedFavourites));
+      alert('Article saved to favourites!');
+    } else {
+      alert('Article is already in favourites!');
+    }
+  };
   return (
-    <Card style={{ margin: '10px', width: '100%' }}>
+    <Card style={{ margin: '10px', width: '200px' }}>
       {/* News Image */}
       <CardMedia
         component="img"
@@ -23,20 +36,14 @@ const NewsItem = ({ news }) => {
       
       {/* News Content */}
       <CardContent>
-        <Typography variant="h6" component="div">
-          {news.title}
-        </Typography>
-        <Typography variant="body2" color="textSecondary">
-          {news.description}
-        </Typography>
-        <Typography variant="caption" color="textSecondary">
-          {news.publishedAt}
-        </Typography>
+        <Typography variant="h6" component="div">{news.title}</Typography>
+        <Typography variant="body2" color="textSecondary">{news.description}</Typography>
+        <Typography variant="caption" color="textSecondary">{news.publishedAt}</Typography>
       </CardContent>
 
       {/* Action Buttons */}
       <div style={{ display: 'flex', justifyContent: 'space-between', padding: '10px' }}>
-        <IconButton aria-label="add to favorites">
+        <IconButton aria-label="add to favorites" onClick={handleBookmark}>
           <FavoriteIcon />
         </IconButton>
         <IconButton aria-label="bookmark">

@@ -1,4 +1,5 @@
-import * as React from 'react';
+//import * as React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Grid } from '@mui/material';
 import MyFavouritesPanel from './MyFavouritesPanel'
 import DisplayResults from './DisplayResults';
@@ -6,22 +7,15 @@ import Header from './Header';
 //import { useState } from 'react';
 
 function Home() {
+    const [newsList, setNewsList] = useState([]);
+
+    useEffect(() => {
+        // Fetch news from an API (e.g., NewsAPI)
+        fetch('https://newsapi.org/v2/everything?q=olympics&apiKey=97e5c682785e4de1a9c3c0b75f7271e7')
+        .then(response => response.json())
+        .then(data => setNewsList(data.articles));
+    }, []);
     
-    /**
-    const [keyword, setKeyword] = useState({
-        keyword: ""
-    })
-
-    const keyWord = () => {
-        setKeyword()
-    };
-
-    const myFavorites = () => {
-    };
-
-    const clearmyFavourties = () =>
-
-    */
     return (
         //<div className='input' style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '10vh'}}>
         <Grid container className='main-container' direction={"column"} > {/** main grid */}
@@ -31,7 +25,7 @@ function Home() {
             <Grid className="content-container" item lg={11}>
                 <Grid container direction='row' style={{height: "100%"}}>
                     <Grid className="left-panel-container" item lg="2.3" >
-                        <MyFavouritesPanel style={{overflowY: "scroll"}}
+                        <MyFavouritesPanel style={{overflowY: "scroll", position: 'fixed'}}
                         //handleSetKeyword={handleSetKeyword}
                         //myFavorites={myFavourites}
                         //clearmyFavourites={clearmyFavourites}
@@ -42,6 +36,7 @@ function Home() {
                         <DisplayResults 
                         //keyWord={keyWord}
                         //updatemyFavourites={updatemyFavorites}
+                        newsList={newsList}
                         />
                     </Grid>
                 </Grid>
