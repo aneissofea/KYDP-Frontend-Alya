@@ -18,23 +18,44 @@ function Header() {
     };
 
     return(
-        <Grid container direction='row' style={{display: "flex", backgroundColor: "#FFD3B6" }}>
+        <Grid container direction='row' style={{display: "flex", backgroundColor: "#04DB9B", paddingLeft: '10px' }}>
             <Grid item xs={2.5} >
-                <h3>Find my news!</h3>    
+                <h3 style={{ fontFamily: 'Inter', fontSize: '20px', color: '#333',  }}>Brand News</h3>    
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={4} style={{height:'10px' }}>
                 <TextField id="filled-basic" label="Search for news" variant="filled" fullWidth={true}></TextField> 
             </Grid>
             <Grid item xs={1} style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}} >
-                <Button variant="contained" onClick={handleSetKeyword}>
+                <Button variant="contained" onClick={handleSetKeyword} sx={{ 
+                fontFamily: 'Inter', 
+                backgroundColor: '#ffffff',  
+                color: '#006346',               
+                borderRadius: '6px',        
+                padding: '10px 20px',        
+                '&:hover': {
+                    backgroundColor: '#333',
+                    color: '#fff', 
+                }
+                }}>
                     Search
                 </Button>
             </Grid>
             <Grid item xs={3} style={{display: 'flex', justifyContent: 'flex-end', alignItems: 'center'}}>
-                <Chip label="username" />
+                <Chip label={"localusername"} />
             </Grid>
+
             <Grid item xs={1} style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                <Button variant="contained" onClick={handleLogOut}>
+                <Button variant="contained" onClick={handleLogOut} sx={{ 
+                fontFamily: 'Inter', 
+                backgroundColor: '#ffffff',  
+                color: '#006346',               
+                borderRadius: '6px',        
+                padding: '10px 20px',        
+                '&:hover': {
+                    backgroundColor: '#333',
+                    color: '#fff', 
+                }
+                }}>
                     Log out
                 </Button>
             </Grid>

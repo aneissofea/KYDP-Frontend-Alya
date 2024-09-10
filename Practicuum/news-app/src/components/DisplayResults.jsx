@@ -1,10 +1,11 @@
 import { Grid } from "@mui/material";
 
-function DisplayResults() {
+function DisplayResults({ newsList }) {
 
     return(
-        <Grid container direction='row' style={{display: "flex",backgroundColor: "#3FCF8F3" }}>
-            <h3>This is DisplayResults:</h3>
+        <Grid container direction='row' style={{display: "flex",backgroundColor: "#3FCF8F3", paddingLeft: '10px'}}>
+            <h3 style={{ fontFamily: 'Inter', color: '#333',  }}>This is DisplayResults:</h3>
+            
         </Grid>
     );
 };

@@ -30,7 +30,7 @@ function Home() {
             </Grid>
             <Grid className="content-container" item lg={11}>
                 <Grid container direction='row' style={{height: "100%"}}>
-                    <Grid className="left-panel-container" item lg="2.5" >
+                    <Grid className="left-panel-container" item lg="2.3" >
                         <MyFavouritesPanel style={{overflowY: "scroll"}}
                         //handleSetKeyword={handleSetKeyword}
                         //myFavorites={myFavourites}
@@ -38,7 +38,7 @@ function Home() {
                         ></MyFavouritesPanel>
                     </Grid>    
                 
-                    <Grid className='results-container' item lg="9.5">
+                    <Grid className='results-container' item lg="9.7">
                         <DisplayResults 
                         //keyWord={keyWord}
                         //updatemyFavourites={updatemyFavorites}
