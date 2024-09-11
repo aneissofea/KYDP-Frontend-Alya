@@ -17,6 +17,7 @@ const Login = ({setIsLoggedIn, setUsername}) => {
     const [localusername, setLocalUsername] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
+    const [errorMessage, setErrorMessage] = useState(null); // Add a state to store the error message
     const navigate = useNavigate();
 ;
     const showPasswordHandler = () => {
@@ -36,16 +37,16 @@ const Login = ({setIsLoggedIn, setUsername}) => {
         console.log(localusername, password);
         
         if (localusername === 'sofea' && password === 'mickeylalala123') {
-        
+            
             console.log("success!");
             localStorage.setItem('isLoggedIn', true);
             localStorage.setItem('localusername', localusername);
             setIsLoggedIn(true);
             setLocalUsername(localusername);
             navigate('/home');
-        }
-        else {
-            <Alert severity="warning">Wrong username and password</Alert>
+            setErrorMessage(null); // Clear the error message if login is successful
+        } else {
+            setErrorMessage('Wrong username and password'); // Set the error message
         }
     };
 
@@ -91,11 +92,18 @@ const Login = ({setIsLoggedIn, setUsername}) => {
 
 
                     <div className='inputs'>
+                         {/* Conditionally render the alert if there's an error */}
+                         {errorMessage && (
+                                <Alert severity="warning" onClose={() => setErrorMessage(null)}>
+                                    {errorMessage}
+                                </Alert>
+                            )}
                         <div className='input' style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '10vh'}}>
                             <TextField 
                             id="outlined-basic" 
                             label="username" 
-                            variant="standard" 
+                            variant="standard"
+                            value={localusername} 
                             onChange={(e) => setLocalUsername(e.target.value)}
                             fullWidth  // Make input fill the available space
                             />                         

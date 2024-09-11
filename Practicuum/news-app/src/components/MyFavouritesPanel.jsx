@@ -1,5 +1,5 @@
-import { Grid, Button, List, ListItem, ListItemText} from "@mui/material";
 import React, { useState, useEffect } from "react";
+import { Grid, Button, List, ListItem, ListItemText, Typography} from "@mui/material";
 
 function MyFavouritesPanel() {
 
@@ -23,8 +23,8 @@ function MyFavouritesPanel() {
     };
 
     return(
-        <Grid container direction='row' style={{display: "flex", backgroundColor: "#fff", minHeight: "100vh", paddingLeft: '10px', boxShadow: '2px 0 5px rgba(0,0,0,0.1)'}}>
-            <Grid >
+        <Grid container direction='row' style={{display: "flex", backgroundColor: "#fff", justifyContent : 'space-between', paddingLeft: '10px', boxShadow: '2px 0 5px rgba(0,0,0,0.1)'}}>
+          
                 <h3 style={{ fontFamily: 'Inter', color: '#333',  }}>My Favourites:</h3>
                 <Button variant="contained" onClick={handleClearFavourites} 
                 disabled={favourites.length === 0} sx={{ 
@@ -32,15 +32,14 @@ function MyFavouritesPanel() {
                 backgroundColor: '#04DB9B',  
                 color: '#fff',               
                 borderRadius: '8px',        
-                padding: '10px 20px',        
+                padding: '5px 10px',        
                 '&:hover': {
                     backgroundColor: '#006346', 
                 }
                 }}>
                     Clear
                 </Button>
-            </Grid>
-            {favourites.length === 0 ? (
+            {/* {favourites.length === 0 ? (
                 <p>No favorites saved yet!</p>
             ) : (
             <List>
@@ -58,7 +57,18 @@ function MyFavouritesPanel() {
                     </ListItem>
                 ))}
             </List>
-            )}
+            )} */}
+            {favourites.length > 0 ? (
+                <List>
+                    {favourites.map((news, index) => (
+                    <ListItem button key={index} onClick={() => openArticle(news.url)}>
+                        <ListItemText primary={news.title} />
+                    </ListItem>
+                    ))}
+                </List>
+                ) : (
+                <Typography variant="body2">No favourites yet.</Typography>
+                )}
         </Grid>
         
     );

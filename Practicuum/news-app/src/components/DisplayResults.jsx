@@ -8,7 +8,7 @@ const DisplayResults = ({ newsList }) => {
             <h3 style={{ fontFamily: 'Inter', color: '#333',  }}>This is DisplayResults:</h3>
             <Grid container spacing={1}>
                 {newsList.map((newsItem) => (
-                    <Grid item xs={12} sm={6} md={4} key={newsItem.url}>
+                    <Grid item xs={12} sm={3} md={3} key={newsItem.url}>
                         <NewsItem news={newsItem} />
                     </Grid>
                 ))}
