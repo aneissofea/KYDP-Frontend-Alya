@@ -21,7 +21,6 @@ const Login = ({setIsLoggedIn, setUsername}) => {
     const navigate = useNavigate();
 ;
     const showPasswordHandler = () => {
-        //setValues({...values, showPassword: !values.showPassword});
         setShowPassword(!showPassword);
     };
 
