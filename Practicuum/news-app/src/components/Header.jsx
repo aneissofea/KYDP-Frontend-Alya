@@ -3,13 +3,13 @@ import { TextField, Grid, Button, Chip } from '@mui/material';
 import { useState } from 'react';
 
 
-function Header({ setSearchKeyword,}) {
+function Header() {
 
     const [keyWord, setKeyWord] = useState({
 
     });
 
-    const handleSearchNews = () => {
+    const handleSetKeyword = () => {
 
     };
 
@@ -23,16 +23,10 @@ function Header({ setSearchKeyword,}) {
                 <h3 style={{ fontFamily: 'Inter', fontSize: '20px', color: '#333',  }}>Brand News</h3>    
             </Grid>
             <Grid item xs={4} style={{height:'10px' }}>
-                <TextField 
-                id="filled-basic" 
-                onChange={(e) => setSearchKeyword(e.target.value)} 
-                label="Search for news" 
-                variant="filled" 
-                fullWidth={true}>
-                </TextField> 
+                <TextField id="filled-basic" label="Search for news" variant="filled" fullWidth={true}></TextField> 
             </Grid>
             <Grid item xs={1} style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}} >
-                <Button variant="contained" onClick={handleSearchNews} sx={{ 
+                <Button variant="contained" onClick={handleSetKeyword} sx={{ 
                 fontFamily: 'Inter', 
                 backgroundColor: '#ffffff',  
                 color: '#006346',               
@@ -47,7 +41,7 @@ function Header({ setSearchKeyword,}) {
                 </Button>
             </Grid>
             <Grid item xs={3} style={{display: 'flex', justifyContent: 'flex-end', alignItems: 'center'}}>
-                <Chip label={localStorage.getItem('username')} />
+                <Chip label={"localusername"} />
             </Grid>
 
             <Grid item xs={1} style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
