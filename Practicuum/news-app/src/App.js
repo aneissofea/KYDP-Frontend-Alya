@@ -1,4 +1,3 @@
-//import { Home } from '@mui/icons-material';
 import './App.css';
 import Login from './components/Login';
 import Home from './components/Home';
@@ -11,28 +10,19 @@ function App() {
   //state isLoggedIn should be here so can be passed to Home and Login 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
-
-  useEffect(() => {
-    const loggedInStatus = localStorage.getItem('isLoggedIn');
-    const storedUsername = localStorage.getItem('username');  
-    
+  const loggedInStatus = localStorage.getItem('isLoggedIn');
+  const storedUsername = localStorage.getItem('username');  
+  
+  useEffect(() => {    
     if (loggedInStatus && storedUsername) {
       setIsLoggedIn(true);
       setUsername(storedUsername);
     }
-  }, []);
+  }, [loggedInStatus, storedUsername]);
 
-
+ 
 
   return (
-    /**<div>
-      <Router>
-        <Routes>
-          <Route path="/" {...props} element={<Login/>} />
-          <Route path="/home" {...props} element={<Home/>} />
-        </Routes>
-      </Router> 
-    </div> */
 
     <Router>
       <Routes>

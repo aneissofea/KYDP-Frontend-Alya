@@ -8,12 +8,6 @@ import { useNavigate } from 'react-router-dom';
 
 const Login = ({setIsLoggedIn, setUsername}) => {
 
-    /**const [values, setValues] = useState({
-        username: "",
-        password: "",
-        showPassword: false,
-    });*/
-
     const [localusername, setLocalUsername] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
@@ -28,10 +22,6 @@ const Login = ({setIsLoggedIn, setUsername}) => {
         event.preventDefault();
     };
 
-    /**const inputChangeHandler = (prop) => (event) => {
-        setValues({...values, [prop]: event.target.value});
-    };*/
-
     const handleLogin = () => {
         console.log(localusername, password);
         
@@ -39,7 +29,7 @@ const Login = ({setIsLoggedIn, setUsername}) => {
             
             console.log("success!");
             localStorage.setItem('isLoggedIn', true);
-            localStorage.setItem('localusername', localusername);
+            localStorage.setItem('username', localusername);
             setIsLoggedIn(true);
             setLocalUsername(localusername);
             navigate('/home');
@@ -55,7 +45,7 @@ const Login = ({setIsLoggedIn, setUsername}) => {
                 display: "flex",
                 zIndex: '-1',
                 backgroundColor: "#04DB9B",
-                minHeight: "100vh",   // Makes the background fill the whole page
+                minHeight: "100vh",   // MAkes background fill the whole page
                 justifyContent: "center",  // Centers horizontally
                 alignItems: "center"       // Centers vertically
             }}>
@@ -63,8 +53,8 @@ const Login = ({setIsLoggedIn, setUsername}) => {
                 borderRadius: '20px',
                 padding: '15px',
                 boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-                width: '80%', // You can customize the width
-                height:'600px', // You can customize the height
+                width: '80%', 
+                height:'600px', 
                 maxWidth: '1000px', // Max width for larger screens
                 display: "flex",
                 // backgroundImage: 'url(https://freeimage.host/i/dUC9XFS)',
@@ -82,7 +72,7 @@ const Login = ({setIsLoggedIn, setUsername}) => {
                             justifyContent: 'center',
                             alignItems: 'center',
                             height: '10vh',
-                            marginBottom: '20px', //delete if you want to                                
+                            marginBottom: '20px', //no use, delete later if you want to                                
                         }}>
                         <h1 style={{ fontFamily: 'Inter', fontSize: '3.4rem', color: '#333' }}> 
                             Brand News
@@ -141,10 +131,6 @@ const Login = ({setIsLoggedIn, setUsername}) => {
                             Log in
                         </Button>
                     </div>
-
-                    {/* <div className='login-container' style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}> 
-                        <p>Click here to log in</p>
-                    </div> */}
 
                 </Grid>
                 </Grid>              

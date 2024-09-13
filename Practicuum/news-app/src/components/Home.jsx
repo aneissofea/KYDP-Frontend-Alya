@@ -1,5 +1,3 @@
-
-    //import * as React from 'react';
 import React, {useState, useEffect} from 'react';
 import { Grid } from '@mui/material';
 import MyFavouritesPanel from './MyFavouritesPanel'
@@ -16,9 +14,8 @@ function Home({handleLogOut, setSearchKeyword, handleSearchNews}) {
         .then(response => response.json())
         .then(data => setNewsList(data.articles));
     }, []);
-
+    
     return (
-        //<div className='input' style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '10vh'}}>
         <Grid container className='main-container' direction={"column"} > {/** main grid */}
             <Grid className="header-container" item lg={1} style={{maxHeight: "10vh"}} >
                 <Header handleLogOut={handleLogOut} setSearchKeyword={setSearchKeyword} handleSearchNews={handleSearchNews}/>
@@ -26,17 +23,13 @@ function Home({handleLogOut, setSearchKeyword, handleSearchNews}) {
             <Grid className="content-container" item lg={11}>
                 <Grid container direction='row' style={{height: "100%"}}>
                     <Grid className="left-panel-container" item lg="2.3" >
-                        <MyFavouritesPanel style={{overflowY: "scroll", position: 'fixed', height: "100vh"}}
-                        //handleSetKeyword={handleSetKeyword}
-                        //myFavorites={myFavourites}
-                        //clearmyFavourites={clearmyFavourites}
-                        ></MyFavouritesPanel>
+                        <MyFavouritesPanel style={{overflowY: "scroll", position: 'fixed', height: "100vh"}}>
+
+                        </MyFavouritesPanel>
                     </Grid>    
                 
                     <Grid className='results-container' item lg="9.7">
                         <DisplayResults 
-                        //keyWord={keyWord}
-                        //updatemyFavourites={updatemyFavorites}
                         newsList={newsList}
                         />
                     </Grid>

@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { TextField, Grid, Button, Chip } from '@mui/material';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 function Header() {
-
+    const navigate = useNavigate();
     const [keyWord, setKeyWord] = useState({
 
     });
@@ -14,7 +15,9 @@ function Header() {
     };
 
     const handleLogOut = () => {
-
+        localStorage.removeItem('isLoggedIn')
+        localStorage.removeItem('username')
+        return navigate('/login');
     };
 
     return(
@@ -41,7 +44,7 @@ function Header() {
                 </Button>
             </Grid>
             <Grid item xs={3} style={{display: 'flex', justifyContent: 'flex-end', alignItems: 'center'}}>
-                <Chip label={"localusername"} />
+                <Chip label={localStorage.getItem('username')} />
             </Grid>
 
             <Grid item xs={1} style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
