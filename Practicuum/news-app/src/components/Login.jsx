@@ -28,7 +28,7 @@ const Login = ({setIsLoggedIn, setUsername}) => {
         if (localusername === 'sofea' && password === 'mickeylalala123') {
             
             console.log("success!");
-            localStorage.setItem('isLoggedIn', true);
+            localStorage.setItem('isLoggedIn', true);   // Set login status in local storage
             localStorage.setItem('username', localusername);
             setIsLoggedIn(true);
             setLocalUsername(localusername);

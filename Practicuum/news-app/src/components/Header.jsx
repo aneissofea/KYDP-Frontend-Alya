@@ -4,20 +4,25 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
-function Header() {
+function Header({ setSearchKeyword, handleSearchNews, setIsLoggedIn }) {
     const navigate = useNavigate();
-    const [keyWord, setKeyWord] = useState({
+    const [keyword, setKeyword] = useState('');
 
-    });
-
+    // Handle setting the search keyword and triggering the search
     const handleSetKeyword = () => {
-
+        setSearchKeyword(keyword); // Update the keyword in parent state
+        handleSearchNews(keyword); // Trigger the API call for search results
     };
 
+    // Handle user logout
     const handleLogOut = () => {
+        // Clear login details from localStorage
         localStorage.removeItem('isLoggedIn')
         localStorage.removeItem('username')
-        return navigate('/login');
+
+        // Update state and redirect to login
+        setIsLoggedIn(false);
+        navigate('/login', { replace: true }); // Redirect to the login page
     };
 
     return(
@@ -26,7 +31,18 @@ function Header() {
                 <h3 style={{ fontFamily: 'Inter', fontSize: '20px', color: '#333',  }}>Brand News</h3>    
             </Grid>
             <Grid item xs={4} style={{height:'10px' }}>
-                <TextField id="filled-basic" label="Search for news" variant="filled" fullWidth={true}></TextField> 
+                <TextField id="filled-basic"
+                    label="Search for news"
+                    variant="filled"
+                    fullWidth={true}
+                    value={keyword} // Controlled input
+                    onChange={(e) => setKeyword(e.target.value)} // Update state on change
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                            handleSetKeyword(); // Trigger search when Enter is pressed
+                        }
+                    }}
+                />
             </Grid>
             <Grid item xs={1} style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}} >
                 <Button variant="contained" onClick={handleSetKeyword} sx={{ 
@@ -61,12 +77,9 @@ function Header() {
                 }}>
                     Log out
                 </Button>
-            </Grid>
-                
+            </Grid>      
         </Grid>
-        
     );
-
 };
 
 export default Header;

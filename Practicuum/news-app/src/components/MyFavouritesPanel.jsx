@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Grid, Button, List, ListItem, ListItemText, Typography} from "@mui/material";
 
-function MyFavouritesPanel() {
+function MyFavouritesPanel({refreshFavourites}) {
 
     const [favourites, setFavourites] = useState([]);
 
@@ -9,7 +9,7 @@ function MyFavouritesPanel() {
     useEffect(() => {
         const savedFavourites = JSON.parse(localStorage.getItem('favourites')) || [];
         setFavourites(savedFavourites);
-    }, []);
+    }, [refreshFavourites]);        // Dependency on refreshFavourites ensures re-fetch
 
     // Handle clearing all favourites
     const handleClearFavourites = () => {
@@ -26,16 +26,19 @@ function MyFavouritesPanel() {
         <Grid container direction='row' style={{display: "flex", backgroundColor: "#fff", justifyContent : 'space-between', paddingLeft: '10px', boxShadow: '2px 0 5px rgba(0,0,0,0.1)'}}>
           
                 <h3 style={{ fontFamily: 'Inter', color: '#333',  }}>Favourites:</h3>
-                <Button variant="contained" onClick={handleClearFavourites} 
-                disabled={favourites.length === 0} sx={{ 
-                fontFamily: 'Inter', 
-                backgroundColor: '#04DB9B',  
-                color: '#fff',               
-                borderRadius: '8px',        
-                padding: '0 10px',        
-                '&:hover': {
-                    backgroundColor: '#006346', 
-                }
+                <Button 
+                variant="contained" 
+                onClick={handleClearFavourites} 
+                disabled={favourites.length === 0} 
+                sx={{ 
+                    fontFamily: 'Inter', 
+                    backgroundColor: '#04DB9B',  
+                    color: '#fff',               
+                    borderRadius: '8px',        
+                    padding: '0 10px',        
+                    '&:hover': {
+                        backgroundColor: '#006346', 
+                    }
                 }}>
                     Clear
                 </Button>

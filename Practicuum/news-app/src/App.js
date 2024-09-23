@@ -13,14 +13,21 @@ function App() {
   const loggedInStatus = localStorage.getItem('isLoggedIn');
   const storedUsername = localStorage.getItem('username');  
   
+  // useEffect(() => {    
+  //   if (loggedInStatus && storedUsername) {
+  //     setIsLoggedIn(true);
+  //     setUsername(storedUsername);
+  //   }
+  // }, [loggedInStatus, storedUsername]);
+
   useEffect(() => {    
+    const loggedInStatus = localStorage.getItem('isLoggedIn');
+    const storedUsername = localStorage.getItem('username');
     if (loggedInStatus && storedUsername) {
       setIsLoggedIn(true);
       setUsername(storedUsername);
     }
-  }, [loggedInStatus, storedUsername]);
-
- 
+  }, []);
 
   return (
 
@@ -33,7 +40,7 @@ function App() {
         
         <Route 
           path="/home"
-          element = { isLoggedIn ? <Home username={username} /> : <Navigate to="/login" />} 
+          element = { isLoggedIn ? <Home username={username} setIsLoggedIn={setIsLoggedIn}/> : <Navigate to="/login" />} 
         />
 
         <Route path="*" element={<Navigate to="/login" />} />
